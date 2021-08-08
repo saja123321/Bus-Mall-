@@ -45,6 +45,7 @@ border-radius: 15px;
 transition: all 500ms;
 font-size: 20px;
 margin: 20px;
+color: #D9CAB3;
 }
 button:hover , nav a:hover{
     background-color: #986D8E;

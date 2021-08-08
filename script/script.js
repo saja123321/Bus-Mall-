@@ -2,7 +2,7 @@
 'use strict';
 let imgesSrcArr = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'water-can.jpg', 'wine-glass.jpg'];
 let counter = 0;
-let numberOfRound = 5;
+let numberOfRound = 25;
 let r1, r2, r3;
 const imageSection = document.getElementById('imageSection');
 let img1 = document.getElementById('img1');
