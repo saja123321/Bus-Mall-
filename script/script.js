@@ -8,8 +8,15 @@ const imageSection = document.getElementById('imageSection');
 let img1 = document.getElementById('img1');
 let img2 = document.getElementById('img2');
 let img3 = document.getElementById('img3');
+let p1 = document.getElementById('p1');
+let p2 = document.getElementById('p2');
+let p3 = document.getElementById('p3');
 let result = document.getElementById('Result');
 let resultUl = document.getElementById('resultsUl');
+
+let ctx = document.getElementById('showData').getContext('2d');
+
+
 function BusMall(imageName, imageSrc) {
 
   this.imageName = imageName;
@@ -33,12 +40,26 @@ function getRandom(min, max) {
 
 
 function render() {
-  r1 = getRandom(0, imgesSrcArr.length - 1);
-  r2 = getRandom(0, imgesSrcArr.length - 1);
-  r3 = getRandom(0, imgesSrcArr.length - 1);
+
+
+
+  do {
+    r1 = getRandom(0, imgesSrcArr.length - 1);
+    r2 = getRandom(0, imgesSrcArr.length - 1);
+    r3 = getRandom(0, imgesSrcArr.length - 1);
+  }
+  while (r1 === r2 || r1 === r3 || r3 === r2);
+
+  console.log(r1, r2, r3);
   img1.src = './img/' + BusMall.images[r1].imageSrc;
   img2.src = './img/' + BusMall.images[r2].imageSrc;
   img3.src = './img/' + BusMall.images[r3].imageSrc;
+
+  p1.textContent = BusMall.images[r1].imageName;
+  p2.textContent = BusMall.images[r2].imageName;
+  p3.textContent = BusMall.images[r3].imageName;
+
+
 
   BusMall.images[r1].numOfShown++;
   BusMall.images[r2].numOfShown++;
@@ -52,6 +73,8 @@ imageSection.addEventListener('click', showImage);
 
 function showImage(event) {
 
+  let arr1 = [r1, r2, r3];
+  let arr2 = [];
   if ((event.target.id === 'img1' || event.target.id === 'img2' || event.target.id === 'img3') && counter < numberOfRound) {
     // event.preventDefault();
     if (event.target.id === 'img1') {
@@ -63,10 +86,15 @@ function showImage(event) {
     }
     console.log(counter, numberOfRound);
     counter++;
-    render();
-  } else {
-    result.style.visibility = 'visible';
 
+    do {
+      render();
+      arr2 = [r1, r2, r3];
+      console.log(arr1 + ' ,,,, ' + arr2);
+    } while (!checkDublicate);
+
+  } else if (counter >= numberOfRound) {
+    result.style.visibility = 'visible';
   }
 }
 function showResult() {
@@ -75,6 +103,7 @@ function showResult() {
   }
   else {
     imageSection.removeEventListener('click', showImage);
+    createMyChart(getName(), getShowData(), getClickData());
 
     for (let ii = 0; ii < BusMall.images.length; ii++) {
       let liE = document.createElement('li');
@@ -88,3 +117,76 @@ function showResult() {
 
 
 }
+
+//checkDublicate([6, 2 , 3] , [1 , 5 , 9]);
+
+function checkDublicate(list1, list2) {
+  for (let index = 0; index < list1.length; index++) {
+    for (let index2 = 0; index2 < list2.length; index2++) {
+      if (list1[index] === list2[index2]) {
+        console.log("dublecate !!!!!!!!!!");
+        return false;
+      }
+    }
+  }
+  return true;
+}
+function createMyChart(names, clikData, showData) {
+
+  let myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: names,
+      datasets: [{
+        label: '# of Votes',
+        data: showData,
+        backgroundColor: [
+          'rgba(255, 159, 64, 0.9)'
+        ],
+      },
+      {
+        label: '# of Click time',
+        data: clikData,
+        backgroundColor: [
+          '#986D8E'
+        ],
+      }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+  console.log(myChart.data);
+}
+
+function getName() {
+  let arrayName = [];
+  for (let index = 0; index < BusMall.images.length - 1; index++) {
+    arrayName.push(BusMall.images[index].imageName);
+  }
+  return arrayName;
+}
+
+
+function getShowData() {
+  let arrayShown = [];
+  for (let index = 0; index < BusMall.images.length - 1; index++) {
+    arrayShown.push(BusMall.images[index].numOfShown);
+  }
+  return arrayShown;
+}
+
+function getClickData() {
+  let arrayClick = [];
+
+  for (let index = 0; index < BusMall.images.length - 1; index++) {
+    arrayClick.push(BusMall.images[index].numOfClick);
+  }
+  return arrayClick;
+}
+
