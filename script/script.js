@@ -65,7 +65,6 @@ function render() {
   BusMall.images[r2].numOfShown++;
   BusMall.images[r3].numOfShown++;
 
-  // console.log(busmall.images[r1]);
 }
 render();
 
@@ -90,8 +89,7 @@ function showImage(event) {
     do {
       render();
       arr2 = [r1, r2, r3];
-      console.log(arr1 + ' ,,,, ' + arr2);
-    } while (!checkDublicate);
+     } while (!checkDublicate(arr1 , arr2));
 
   } else if (counter >= numberOfRound) {
     result.style.visibility = 'visible';
@@ -110,21 +108,15 @@ function showResult() {
       liE.textContent = `${BusMall.images[ii].imageName} had ${BusMall.images[ii].numOfClick} votes, and was seen  ${BusMall.images[ii].numOfShown} times.`;
       resultUl.appendChild(liE);
     }
-
     result.textContent = 'reset';
   }
-
-
-
 }
 
-//checkDublicate([6, 2 , 3] , [1 , 5 , 9]);
 
 function checkDublicate(list1, list2) {
   for (let index = 0; index < list1.length; index++) {
     for (let index2 = 0; index2 < list2.length; index2++) {
       if (list1[index] === list2[index2]) {
-        console.log("dublecate !!!!!!!!!!");
         return false;
       }
     }
@@ -161,7 +153,6 @@ function createMyChart(names, clikData, showData) {
       }
     }
   });
-  console.log(myChart.data);
 }
 
 function getName() {

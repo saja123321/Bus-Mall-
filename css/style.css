@@ -74,11 +74,9 @@ li , p{
     padding: 5px 10px;
     list-style: none;
     text-transform: capitalize;
-}
-p{
-
     text-align: center;
 }
+
 #divImg{
 
     margin: 15px 0px;
