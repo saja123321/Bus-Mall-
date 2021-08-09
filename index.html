@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
     <title> Bus Mall</title>
 </head>
 
@@ -21,15 +22,20 @@
         </header>
         <main>
             <section id="imageSection">
-                <img src="" id="img1" alt="img1">
-                <img src="" id="img2">
-                <img src="" id="img3">
+              <div id="divImg"><img src="" id="img1" alt="img1"> <p id="p1"></p></div>  
+              <div id="divImg">  <img src="" id="img2"> <p id="p2"></p> </div>
+              <div id="divImg">  <img src="" id="img3"> <p id="p3"></p></div>
             </section>
+
+           
        
  
     </section>
     <section>
         <button id='Result' onclick="showResult();"> Show Result </button>
+
+        <canvas id="showData" width="400" height="100"></canvas>
+        
         <ul id="resultsUl">
 
         </ul>

@@ -65,7 +65,7 @@ nav h1{
     color: #986D8E ;
     font-weight: 500
 }
-li{
+li , p{
     background-color:  #D9CAB3;
     border-radius: 20px;
     margin: 5px;
