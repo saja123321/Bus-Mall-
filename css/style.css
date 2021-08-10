@@ -19,7 +19,6 @@ body{
     background-color: #87A8A4;
 }
 #results{
-    background-color: #986D8E;
     display: grid;
     grid-template-columns: 1fr  1fr ;
     gap: 20px;
