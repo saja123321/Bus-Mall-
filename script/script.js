@@ -17,32 +17,28 @@ let resultUl = document.getElementById('resultsUl');
 let ctx = document.getElementById('showData').getContext('2d');
 
 
-function BusMall(imageName, imageSrc) {
+function BusMall(imageName, imageSrc , numOfClick = 0 , numOfShown = 0 ) {
 
   this.imageName = imageName;
   this.imageSrc = imageSrc;
-  this.numOfClick = 0;
-  this.numOfShown = 0;
+  this.numOfClick = numOfClick;
+  this.numOfShown = numOfShown;
   BusMall.images.push(this);
 }
 
 BusMall.images = [];
+checkDataExist();
 
 //---------------------------------------------------------------------
-
-for (let i = 0; i < imgesSrcArr.length; i++) {
-  new BusMall(imgesSrcArr[i].split('.')[0], imgesSrcArr[i]);
-}
+// for (let i = 0; i < imgesSrcArr.length; i++) {
+//   new BusMall(imgesSrcArr[i].split('.')[0], imgesSrcArr[i]);
+// }
 //---------------------------------------------------------------------
 function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-
 function render() {
-
-
-
   do {
     r1 = getRandom(0, imgesSrcArr.length - 1);
     r2 = getRandom(0, imgesSrcArr.length - 1);
@@ -50,7 +46,7 @@ function render() {
   }
   while (r1 === r2 || r1 === r3 || r3 === r2);
 
-  console.log(r1, r2, r3);
+  //console.log(r1, r2, r3);
   img1.src = './img/' + BusMall.images[r1].imageSrc;
   img2.src = './img/' + BusMall.images[r2].imageSrc;
   img3.src = './img/' + BusMall.images[r3].imageSrc;
@@ -64,6 +60,7 @@ function render() {
   BusMall.images[r1].numOfShown++;
   BusMall.images[r2].numOfShown++;
   BusMall.images[r3].numOfShown++;
+  localStorage.localBusMall = JSON.stringify( BusMall.images );
 
 }
 render();
@@ -83,13 +80,13 @@ function showImage(event) {
     } else if (event.target.id === 'img3') {
       BusMall.images[r3].numOfClick++;
     }
-    console.log(counter, numberOfRound);
+    //console.log(counter, numberOfRound);
     counter++;
 
     do {
       render();
       arr2 = [r1, r2, r3];
-     } while (!checkDublicate(arr1 , arr2));
+    } while (!checkDublicate(arr1 , arr2));
 
   } else if (counter >= numberOfRound) {
     result.style.visibility = 'visible';
@@ -123,6 +120,7 @@ function checkDublicate(list1, list2) {
   }
   return true;
 }
+
 function createMyChart(names, clikData, showData) {
 
   let myChart = new Chart(ctx, {
@@ -181,3 +179,16 @@ function getClickData() {
   return arrayClick;
 }
 
+function checkDataExist(){
+  if(localStorage.localBusMall){
+    let localBusMallObj = JSON.parse(localStorage.localBusMall) ;
+    for( let x = 0; x < localBusMallObj.length; x++ ) {
+      new BusMall( localBusMallObj[x].imageName, localBusMallObj[x].imageSrc , localBusMallObj[x].numOfClick , localBusMallObj[x].numOfClick);
+    }
+  }else{
+    for (let i = 0; i < imgesSrcArr.length; i++) {
+      new BusMall(imgesSrcArr[i].split('.')[0], imgesSrcArr[i]);
+    }
+
+  }
+}
