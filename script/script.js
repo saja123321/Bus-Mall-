@@ -12,6 +12,8 @@ let p1 = document.getElementById('p1');
 let p2 = document.getElementById('p2');
 let p3 = document.getElementById('p3');
 let result = document.getElementById('Result');
+let resetData = document.getElementById('Result2');
+
 let resultUl = document.getElementById('resultsUl');
 
 let ctx = document.getElementById('showData').getContext('2d');
@@ -90,10 +92,17 @@ function showImage(event) {
 
   } else if (counter >= numberOfRound) {
     result.style.visibility = 'visible';
+    resetData.style.visibility = 'visible';
+
   }
 }
+function resetMallData(){
+  localStorage.removeItem("localBusMall");
+  window.location.reload();
+}
+
 function showResult() {
-  if (result.textContent === 'reset') {
+  if (result.textContent === 'vote again') {
     window.location.reload();
   }
   else {
@@ -105,7 +114,7 @@ function showResult() {
       liE.textContent = `${BusMall.images[ii].imageName} had ${BusMall.images[ii].numOfClick} votes, and was seen  ${BusMall.images[ii].numOfShown} times.`;
       resultUl.appendChild(liE);
     }
-    result.textContent = 'reset';
+    result.textContent = 'vote again';
   }
 }
 

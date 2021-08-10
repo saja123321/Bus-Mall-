@@ -18,8 +18,13 @@ body{
     margin: 50px auto;
     background-color: #87A8A4;
 }
-
-#Result {
+#results{
+    background-color: #986D8E;
+    display: grid;
+    grid-template-columns: 1fr  1fr ;
+    gap: 20px;
+}
+#Result , #Result2{
     visibility: hidden;
 }
 
@@ -38,7 +43,6 @@ nav *{
 button ,nav a{
 text-align: right;
 padding: 5px 20px;
-align-content: flex-end;
 text-decoration: none;
 font-weight: 300;
 background-color: #87A8A4;
@@ -46,6 +50,7 @@ border-radius: 15px;
 transition: all 500ms;
 font-size: 20px;
 margin: 20px;
+width: fit-content;
 color: #D9CAB3;
 }
 button:hover , nav a:hover{

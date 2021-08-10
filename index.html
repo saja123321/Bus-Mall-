@@ -11,43 +11,44 @@
 </head>
 
 <body>
-    <section>
-        <header>
-            <nav>
-                <h1> Bus Mall</h1>
-                <a href="#"> Home </a>
-                <a href="#">Aboute Us</a>
-                <a href="#"> Contact Us</a>
-            </nav>
-        </header>
-        <main>
-            <section id="imageSection">
-                <div id="divImg"><img src="" id="img1" alt="img1">
-                    <p id="p1"></p>
-                </div>
-                <div id="divImg"> <img src="" id="img2">
-                    <p id="p2"></p>
-                </div>
-                <div id="divImg"> <img src="" id="img3">
-                    <p id="p3"></p>
-                </div>
-            </section>
-<hr>
 
-            <section>
-                <button id='Result' onclick="showResult();"> Show Result </button>
+    <header>
+        <nav>
+            <h1> Bus Mall</h1>
+            <a href="#"> Home </a>
+            <a href="#">Aboute Us</a>
+            <a href="#"> Contact Us</a>
+        </nav>
+    </header>
+    <main>
+        <section id="imageSection">
+            <div id="divImg"><img src="" id="img1" alt="img1">
+                <p id="p1"></p>
+            </div>
+            <div id="divImg"> <img src="" id="img2">
+                <p id="p2"></p>
+            </div>
+            <div id="divImg"> <img src="" id="img3">
+                <p id="p3"></p>
+            </div>
+        </section>
+        <hr>
 
-                <canvas id="showData" width="400" height="100"></canvas>
-                <hr>
-                <ul id="resultsUl">
+        <section id="results">
+            <button id='Result' onclick="showResult();"> Show Result </button>
+            <button  id='Result2' onclick="resetMallData()" > Reset Data </button>
+        </section>
+        <canvas id="showData" width="400" height="100"></canvas>
+        <hr>
+        <ul id="resultsUl">
 
-                </ul>
-            </section>
-            <script src="script/script.js"></script>
-        </main>
-        <footer>
-            &copy; copy Right 2021
-        </footer>
+        </ul>
+
+        <script src="script/script.js"></script>
+    </main>
+    <footer>
+        &copy; copy Right 2021
+    </footer>
 </body>
 
 </html>
