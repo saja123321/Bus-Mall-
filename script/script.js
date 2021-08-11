@@ -74,7 +74,7 @@ function showImage(event) {
   let arr1 = [r1, r2, r3];
   let arr2 = [];
   if ((event.target.id === 'img1' || event.target.id === 'img2' || event.target.id === 'img3') && counter < numberOfRound) {
-    // event.preventDefault();
+    event.preventDefault();
     if (event.target.id === 'img1') {
       BusMall.images[r1].numOfClick++;
     } else if (event.target.id === 'img2') {
@@ -97,7 +97,7 @@ function showImage(event) {
   }
 }
 function resetMallData(){
-  localStorage.removeItem("localBusMall");
+  localStorage.removeItem('localBusMall');
   window.location.reload();
 }
 
@@ -192,7 +192,7 @@ function checkDataExist(){
   if(localStorage.localBusMall){
     let localBusMallObj = JSON.parse(localStorage.localBusMall) ;
     for( let x = 0; x < localBusMallObj.length; x++ ) {
-      new BusMall( localBusMallObj[x].imageName, localBusMallObj[x].imageSrc , localBusMallObj[x].numOfClick , localBusMallObj[x].numOfClick);
+      new BusMall( localBusMallObj[x].imageName, localBusMallObj[x].imageSrc , localBusMallObj[x].numOfClick , localBusMallObj[x].numOfShown);
     }
   }else{
     for (let i = 0; i < imgesSrcArr.length; i++) {
